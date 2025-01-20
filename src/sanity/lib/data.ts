@@ -31,10 +31,10 @@ export interface ImageAsset {
 
 
 
-export const getAllProducts = async () => {
+export const getFoodProducts = async () => {
     try
     {
-        const queryAllProducts = "*[_type == 'food'|| _type == 'chef']";
+        const queryAllProducts = "*[_type == 'food']";
 
     const products = await client.fetch(queryAllProducts);
     return products;
@@ -44,4 +44,19 @@ export const getAllProducts = async () => {
     console.log(error);
     }
     };
+
+
+    export const getChefProducts = async () => {
+      try
+      {
+          const queryAllProducts = "*[_type == 'chef']";
+  
+      const products = await client.fetch(queryAllProducts);
+      return products;
+      }
+      catch(error)
+      {
+      console.log(error);
+      }
+      };
     
