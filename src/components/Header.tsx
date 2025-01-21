@@ -1,29 +1,17 @@
-// components/Header.tsx
+import React from 'react';
 import Link from 'next/link';
 
-const Header = () => {
+const Navbar: React.FC = () => {
   return (
-    <header className="bg-gray-900 text-white py-4">
+    <nav className="bg-gray-800 text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-2xl font-bold">
-          <Link href="/" className="text-white">ABR Foods</Link>
-        </div>
-        <nav>
-          <ul className="flex space-x-6">
-            <li>
-              <Link href="/" className="hover:text-gray-400">Home</Link>
-            </li>
-            <li>
-              <Link href="/foods" className="hover:text-gray-400">Foods</Link>
-            </li>
-            <li>
-              <Link href="/chefs" className="hover:text-gray-400">Chefs</Link>
-            </li>
-          </ul>
-        </nav>
+        <Link href="/" className="text-xl font-bold">Home</Link>
+        <Link href="/cart" className="text-lg">
+          Cart
+        </Link>
       </div>
-    </header>
+    </nav>
   );
 };
 
-export default Header;
+export default Navbar;

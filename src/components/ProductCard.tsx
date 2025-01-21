@@ -1,6 +1,5 @@
-// components/ProductCard.tsx
-import { useState } from 'react';
-import { Product } from '@/sanity/schemaTypes/index'; // Import the type for a product
+import React, { useState } from 'react';
+import { Product } from '@/components/types'; 
 import ProductModal from './ProductModal';
 
 interface ProductCardProps {
@@ -8,23 +7,27 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  const handleCardClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
 
   return (
-    <div className="product-card" onClick={handleCardClick}>
-      <img src={product.image} alt={product.name} />
-      <h3>{product.name}</h3>
-      <p>{product.category}</p>
-      <p>${product.price}</p>
-      <ProductModal product={product} isOpen={isModalOpen} onClose={handleCloseModal} />
+    <div className="border p-4 rounded-lg shadow-md">
+      <img
+        src={product.image}
+        alt={product.name}
+        className="w-full h-64 object-cover rounded-md"
+        onClick={handleOpenModal}
+      />
+      <h2 className="text-xl font-semibold mt-4">{product.name}</h2>
+      <p className="text-gray-600 mt-2">{product.description}</p>
+      <div className="flex justify-between items-center mt-4">
+        <span className="text-xl font-semibold">${product.price}</span>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded">Add to Cart</button>
+      </div>
+
+      {showModal && <ProductModal product={product} onClose={handleCloseModal} />}
     </div>
   );
 };
